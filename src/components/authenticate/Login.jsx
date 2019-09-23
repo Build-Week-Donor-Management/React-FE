@@ -17,11 +17,11 @@ const LogIn = props => {
     });
   };
 
-  const submitHandler = (event, state) => {
+  const submitHandler = (event, state, value) => {
     event.preventDefault();
     console.log(state);
     axiosWithAuth()
-      .post()
+      .post("/login", value)
       .then(res => {
         localStorage.setItem("token", res.data.token);
       })
@@ -48,9 +48,10 @@ const LogIn = props => {
             <label>Email</label>
             <input
               type="email"
-              placeholder="Email"
+              name="email"
               value={state.email}
               onChange={changeHandler}
+              placeholder="Email"
               required
             />
           </Form.Field>
@@ -58,6 +59,7 @@ const LogIn = props => {
             <label>Password</label>
             <input
               type="password"
+              name="password"
               placeholder="Register your password"
               value={state.password}
               onChange={changeHandler}
