@@ -1,24 +1,68 @@
 // app=>login=> dashboard=>create a campaign =>or add a donor => dashboard
-import React from "react";
-import axiosWithAuth from "../../utilities/axiosWithAuth";
+import React, { useState } from "react";
+import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 import { Segment, Form, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-const login = () => {
+const LogIn = props => {
+  const [state, setState] = useState({
+    email: "",
+    password: ""
+  });
+
+  const changeHandler = event => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const submitHandler = (event, state) => {
+    event.preventDefault();
+    console.log(state);
+    axiosWithAuth()
+      .post()
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+      })
+      .then(res =>
+        setTimeout(() => {
+          props.props.history.push("/dashboard");
+        }, 1000)
+      )
+      .catch(err => console.log(err));
+    setState({
+      email: "",
+      password: ""
+    });
+  };
+
   return (
     <div className="login-wrapper">
       <Segment raised compact>
         <div className="login-cta">
           <h1>Please Log In</h1>
         </div>
-        <Form>
+        <Form onSubmit={event => submitHandler(event, state)}>
           <Form.Field>
             <label>Email</label>
-            <input type="email" placeholder="Email" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={state.email}
+              onChange={changeHandler}
+              required
+            />
           </Form.Field>
           <Form.Field>
             <label>Password</label>
-            <input type="password" placeholder="Register your password" />
+            <input
+              type="password"
+              placeholder="Register your password"
+              value={state.password}
+              onChange={changeHandler}
+              required
+            />
           </Form.Field>
           <Button>Log In</Button>
           <Link to="/signup">
@@ -30,4 +74,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default LogIn;
