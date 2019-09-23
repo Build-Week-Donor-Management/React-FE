@@ -1,5 +1,5 @@
 import React from "react";
-import axiosWithAuth from "../utilities/axiosWithAuth";
+import axiosWithAuth from "../../utilities/axiosWithAuth";
 import { Segment, Form, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const SignUp = () => {
         <Form>
           <Form.Field>
             <label>First Name</label>
-            <input type="text" placeholder="Register a Name" />
+            <input type="text" placeholder="Register your Name" />
           </Form.Field>
           <Form.Field>
             <label>Organization's Name</label>
