@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 import { Segment, Form, Button, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const LogIn = props => {
   const [state, setState] = useState({
