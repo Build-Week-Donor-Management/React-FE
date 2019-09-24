@@ -33,11 +33,12 @@ const SignUp = () => {
         console.log(err);
       });
     setState({
-      first_name: "",
-      last_name: "",
-      organization: "",
+      username: "",
+      password: "",
+      type: "",
       email: "",
-      password: ""
+      phone: "",
+      address: ""
     });
   };
   return (
@@ -48,34 +49,23 @@ const SignUp = () => {
         </div>
         <Form onSubmit={event => submitHandler(event, state)}>
           <Form.Field>
-            <label>First Name</label>
+            <label>Username</label>
             <input
               type="text"
-              name="first_name"
-              placeholder="Register your First Name"
-              value={state.first_name}
+              name="username"
+              placeholder="Register your Username"
+              value={state.username}
               onChange={changeHandler}
               required
             />
           </Form.Field>
           <Form.Field>
-            <label>Last Name</label>
+            <label>Password</label>
             <input
-              type="text"
-              name="last_name"
-              placeholder="Register your Last Name"
-              value={state.last_name}
-              onChange={changeHandler}
-              required
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Organization's Name</label>
-            <input
-              type="text"
-              name="organization"
-              placeholder="Register an Organization"
-              value={state.organization}
+              type="password"
+              name="password"
+              placeholder="Register your password"
+              value={state.password}
               onChange={changeHandler}
               required
             />
@@ -91,13 +81,25 @@ const SignUp = () => {
               required
             />
           </Form.Field>
+
           <Form.Field>
-            <label>Password</label>
+            <label>Phone Number</label>
             <input
-              type="password"
-              name="password"
-              placeholder="Register your password"
-              value={state.password}
+              type="text"
+              name="phone"
+              placeholder="Phone Number"
+              value={state.phone}
+              onChange={changeHandler}
+              required
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Address</label>
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={state.address}
               onChange={changeHandler}
               required
             />
