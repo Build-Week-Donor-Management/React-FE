@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 // import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 import axios from "axios";
-import { Segment, Form, Button } from "semantic-ui-react";
+import { Segment, Form, Button, Select } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+
+const accountOptions = [
+  { key: "u", text: "User", value: "user" },
+  { key: "b", text: "Boardmember", value: "board" },
+  { key: "c", text: "Campaign", value: "campaign" }
+];
 
 const SignUp = () => {
   const [state, setState] = useState({
@@ -70,6 +76,18 @@ const SignUp = () => {
               required
             />
           </Form.Field>
+          <Form.Field
+            control={Select}
+            options={accountOptions}
+            label={{
+              children: "Account type",
+              htmlFor: "form-select-control-type"
+            }}
+            placeholder="Account type"
+            search
+            searchInput={{ id: "form-select-control-type" }}
+            required
+          />
           <Form.Field>
             <label>Email</label>
             <input
