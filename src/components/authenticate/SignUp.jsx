@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 import axios from "axios";
-import { Segment, Form, Button, Select } from "semantic-ui-react";
+import { Segment, Form, Button, Select, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const accountOptions = [
@@ -28,7 +28,7 @@ const SignUp = () => {
   const submitHandler = (event, state, props) => {
     event.preventDefault();
     axios
-      .post("https://donation-management.herokuapp.com/donate/register", state)
+      .post("https://donation-token.herokuapp.com/donate/register/user", state)
       .then(res => {
         alert("An Account was created. Please Login.");
       })
@@ -53,6 +53,7 @@ const SignUp = () => {
         <div className="signup-cta">
           <h1>Sign Up Today!</h1>
         </div>
+
         <Form onSubmit={event => submitHandler(event, state)}>
           <Form.Field>
             <label>Username</label>
@@ -108,7 +109,6 @@ const SignUp = () => {
               placeholder="Phone Number"
               value={state.phone}
               onChange={changeHandler}
-              required
             />
           </Form.Field>
           <Form.Field>
@@ -119,7 +119,6 @@ const SignUp = () => {
               placeholder="Address"
               value={state.address}
               onChange={changeHandler}
-              required
             />
           </Form.Field>
           <Button>Submit</Button>
