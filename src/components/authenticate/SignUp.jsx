@@ -18,24 +18,27 @@ const SignUp = () => {
       ...state,
       [event.target.name]: event.value
     });
-    const submitHandler = (event, state) => {
-      event.preventDefault();
-      axios
-        .post("/signup", state)
-        .then(res => {
-          props.history.push("/login");
-        })
-        .catch(err => {
-          console.log(err);
-        });
-      setState({
-        first_name: "",
-        last_name: "",
-        organization: "",
-        email: "",
-        password: ""
+  };
+  const submitHandler = (event, state, props) => {
+    event.preventDefault();
+    axios
+      .post("https://donation-management.herokuapp.com/donate/register", state)
+      .then(res => {
+        alert("An Account was created. Please Login.");
+      })
+      .then(res => {
+        props.history.push("/login");
+      })
+      .catch(err => {
+        console.log(err);
       });
-    };
+    setState({
+      first_name: "",
+      last_name: "",
+      organization: "",
+      email: "",
+      password: ""
+    });
   };
   return (
     <div className="signUp-wrapper">

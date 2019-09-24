@@ -21,7 +21,7 @@ const LogIn = props => {
     event.preventDefault();
     console.log(state);
     axiosWithAuth()
-      .post("/login", value)
+      .post("/donate/login", value)
       .then(res => {
         localStorage.setItem("token", res.data.token);
       })
