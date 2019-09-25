@@ -1,12 +1,13 @@
 // app=>login=> dashboard=>create a campaign =>or add a donor => dashboard
 import React, { useState } from "react";
 import { axiosWithAuth } from "../../utilities/axiosWithAuth";
-import { Segment, Form, Button } from "semantic-ui-react";
+import { Segment, Form, Button, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const LogIn = props => {
   const [state, setState] = useState({
-    email: "",
+    username: "",
     password: ""
   });
 
@@ -32,7 +33,7 @@ const LogIn = props => {
       )
       .catch(err => console.log(err));
     setState({
-      email: "",
+      username: "",
       password: ""
     });
   };
@@ -45,13 +46,14 @@ const LogIn = props => {
         </div>
         <Form onSubmit={event => submitHandler(event, state)}>
           <Form.Field>
-            <label>Email</label>
+            <label>Username</label>
             <input
-              type="email"
-              name="email"
-              value={state.email}
+              type="text"
+              name="username"
+              value={state.username}
               onChange={changeHandler}
-              placeholder="Email"
+              placeholder="Username"
+              fluid
               required
             />
           </Form.Field>
