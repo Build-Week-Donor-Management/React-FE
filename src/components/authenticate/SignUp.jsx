@@ -28,7 +28,10 @@ const SignUp = () => {
   const submitHandler = (event, state, props) => {
     event.preventDefault();
     axios
-      .post("https://donation-token.herokuapp.com/donate/register/user", state)
+      .post(
+        "https://donation-management.herokuapp.com/donate/register/user",
+        state
+      )
       .then(res => {
         alert("An Account was created. Please Login.");
       })
