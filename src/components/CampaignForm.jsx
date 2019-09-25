@@ -53,6 +53,7 @@ function CampaignForm({ errors, touched, values, status }) {
         />
         <br />
         <br />
+        <br />
         <Form.Field>
           <Button size="huge" animated="fade">
             <Button.Content visible style={{ width: 100 }}>
