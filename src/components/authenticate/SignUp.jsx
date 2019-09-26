@@ -5,12 +5,6 @@ import { Segment, Form, Button, Select, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { Form as Formik, Field, withFormik } from "formik";
 
-const accountOptions = [
-  { key: "u", text: "User", value: "user" },
-  { key: "b", text: "Boardmember", value: "board" },
-  { key: "c", text: "Campaign", value: "campaign" }
-];
-
 const SignUp = props => {
   return (
     <div className="signUp-wrapper">
@@ -39,27 +33,21 @@ const SignUp = props => {
                 required
               />
             </Form>
-            {/* <Form.Field
-              control={Select}
-              options={accountOptions}
-              name="dropdown"
-              type=
-              label={{
-                children: "Account type",
-                htmlFor: "form-select-control-type"
-              }}
-              placeholder="Account type"
-              search
-              searchInput={{ id: "form-select-control-type" }}
-              required
-            /> */}
+            <Form>
+              <label>Account Type</label>
+              <Field
+                type="text"
+                name="type"
+                placeholder="Register your account type? "
+                required
+              />
+            </Form>
             <Form>
               <label>Email</label>
               <Field
                 type="email"
                 name="email"
                 placeholder="Register your Email"
-                required
               />
             </Form>
 
@@ -89,13 +77,13 @@ const FormikForm = withFormik({
       password: values.password || "",
       email: values.email || "",
       phone: values.phone || "",
-      address: values.address || ""
+      address: values.address || "",
+      type: values.type || ""
     };
   },
   handleSubmit(values, props) {
     axios
       .post(
-        // `https://donation-management.herokuapp.com/donate/register/${dropdown}`,
         "https://donation-management.herokuapp.com/donate/register/user",
         values
       )
@@ -103,70 +91,12 @@ const FormikForm = withFormik({
         console.log("res", res);
         alert("An Account was created. Please Login.");
       })
-      // .then(res => {
-      //   props.history.push("/login");
-      // })
+      .then(res => {
+        props.history.push("/login");
+      })
       .catch(err => {
         console.log(err);
       });
   }
 })(SignUp);
 export default FormikForm;
-
-// const SignUp = props => {
-//   return (
-//     <Segment raised compact>
-//       <Form>
-//         <Formik>
-//           <Form.Field>
-//             <Field
-//               type="text"
-//               name="username"
-//               placeholder="Please enter a username"
-//             />
-//           </Form.Field>
-//           <Form.Field>
-//             <Field
-//               type="password"
-//               name="password"
-//               placeholder="Please enter your password"
-//             />
-//           </Form.Field>
-//           <Button type="submit">Register</Button>
-//           <Link to="/login">
-//             <p>Already have an Account?</p>
-//           </Link>
-//         </Formik>
-//       </Form>
-//     </Segment>
-//   );
-// };
-
-// const FormikForm = withFormik({
-//   mapPropsToValues(values) {
-//     return {
-//       username: values.username || "",
-//       password: values.password || ""
-//     };
-//   },
-//   handleSubmit(values, props) {
-//     console.log(values);
-//     axios
-//       .post(
-//         "https://donation-management.herokuapp.com/donate/register/user",
-//         values
-//       )
-//       .then(res => {
-//         //localStorage.setItem('token', res.data.payload)
-//         alert("Account was created. You will be redirected to login.");
-//       })
-//       .then(res =>
-//         setTimeout(() => {
-//           props.props.history.push("/login");
-//         }, 1000)
-//       )
-//       .catch(err => console.log(err));
-//   }
-// })(SignUp);
-
-// export default FormikForm;
