@@ -101,7 +101,9 @@ const FormikForm = withFormik({
         alert("An Account was created. Please Login.");
       })
       .then(res => {
-        props.history.push("/login");
+        setTimeout(() => {
+          props.props.history.push("/login");
+        }, 1000);
       })
       .catch(err => {
         console.log(err);
