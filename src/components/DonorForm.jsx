@@ -65,8 +65,8 @@ function DonorForm({ errors, touched, values, status }) {
           <Form.Field>
             <label>
               First Name:
-              <FormikField type="text" name="fName" placeholder="First Name" />
-              {touched.fName && errors.fName && <p>{errors.fName}</p>}
+              <FormikField type="text" name="name" placeholder="First Name" />
+              {touched.fName && errors.name && <p>{errors.fName}</p>}
             </label>
           </Form.Field>
           <br />

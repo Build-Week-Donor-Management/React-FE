@@ -121,7 +121,13 @@ function DashBoard(params) {
             <NavLink activeClassName="activeNavButton" to="/donor">Donors</NavLink>
           </li>
           <li>
-            <NavLink activeClassName="activeNavButton" to="/logout">Logout</NavLink>
+            <NavLink activeClassName="activeNavButton"
+              onClick={() => {
+                localStorage.removeItem("token");
+                window.location = "/login";
+              }}
+            >LOGOUT</NavLink>
+            {/* <NavLink activeClassName="activeNavButton" to="/logout">Logout</NavLink> */}
           </li>
           {/* <li>
             <Link to="/campaignForm">Create Campaign</Link>
