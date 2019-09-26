@@ -10,7 +10,26 @@ import axios from "axios";
 import { Button, Checkbox, Form, Dropdown} from "semantic-ui-react";
 
 
+import { Container, Divider, Grid, Header, Image, Menu, Segment } from 'semantic-ui-react'
 
+const ThemingLayout = () => (
+  <Container style={{ marginTop: '3em' }}>
+<Grid columns={3} doubling>
+      <Grid.Column>
+        <Menu
+          items={[
+            { key: '1', href: "/logout", name: 'link-1', content: 'Link' },
+            { key: '2', name: 'link-2', content: 'Link' },
+            { key: '3', name: 'link-3', content: 'Link' },
+          ]}
+          pointing
+          secondary
+        />
+      </Grid.Column>
+      </Grid>
+  </Container>
+  )
+  
 
  const Display1 = props => {
   return (
@@ -489,6 +508,7 @@ function Campaigns(props) {
   return (
     <div>
       <h1>Campaigns Page</h1>
+      <Link to="/campaignForm">Create Campaign</Link>
       {props.campaignList.map(campaign => (
         <div keys={campaign.id}>
           <ul>
@@ -544,6 +564,7 @@ function Donors(props) {
   return (
     <div>
       <h1>Donor Page</h1>
+      <Link to="/donorForm">Register Donor</Link>
       {props.donorList.map(donor => (
         <div keys={donor.id}>
           <img src={donor.avatar} alt={donor.first_name} />
@@ -590,7 +611,7 @@ function DonorCard(props) {
 
 
 
-//logot component
+//logout component
 function Logout(params) {
   return <h1>Logout Page</h1>;
 }
@@ -600,7 +621,43 @@ function Logout(params) {
 
 //dashboard component
 function DashBoard(params) {
+
+  const [navMenu, setNavMenu] = useState({ activeItem: 'home', activeLink: '/',  });
+  const handleItemClick = (e, { name, active }) => setNavMenu({ activeItem: name, activeLink: active})
+
+
   return (
+    <>
+    <Menu secondary>
+    <Menu.Item
+      name='home'
+      // active={navMenu === '/'}
+      active='/'
+
+      onClick={handleItemClick}
+    />
+    <Menu.Item
+      name='tmessages11'
+      active={navMenu === 'tmessages11'}
+      onClick={handleItemClick}
+    />
+    <Menu.Item
+      name='friends'
+      active={navMenu === 'friends'}
+      onClick={handleItemClick}
+    />
+    <Menu.Menu position='right'>
+      <Menu.Item>
+        {/* <FormikField icon='search' placeholder='Search...' /> */}
+      </Menu.Item>
+      <Menu.Item
+        name='logout'
+        active={navMenu === '/logout'}
+        onClick={handleItemClick}
+      />
+    </Menu.Menu>
+  </Menu>
+  
     <BrowserRouter>
       <div>
         <ul>
@@ -618,8 +675,10 @@ function DashBoard(params) {
           </li>
         </ul>
       </div>
-
+      {/* <ThemingLayout /> */}
       <Route exact path="/" component={Home} />
+
+      {/* <Route exact path={navMenu.activeLink} component={Home} /> */}
 
       
       <Route path="/campaign"
@@ -652,9 +711,12 @@ function DashBoard(params) {
 
 
 
-      <Route path="/logot" component={Logout} />
+      <Route path="/logout" component={Logout} />
+      {/* <Route path={navMenu.activeLink} component={Logout} /> */}
+
 
     </BrowserRouter>
+    </>
   );
 }
 export default DashBoard;
