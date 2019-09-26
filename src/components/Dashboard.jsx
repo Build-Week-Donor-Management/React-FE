@@ -95,26 +95,11 @@ const data = [
 function Home(params) {
   return <h1>Home Page</h1>;
 }
-function Donors(params) {
+function Campaigns(props) {
   return (
     <div>
       <h1>Campaigns Page</h1>
-      {data.map(campaign => (
-        <div keys={campaign.id}>
-          <img src={campaign.avatar} alt={campaign.first_name} />
-          <p>({campaign.first_name} {campaign.last_name})</p>
-
-        </div>
-      ))}
-    </div>
-  );
-}
-function Campaigns(params) {
-
-  return (
-    <div>
-      <h1>Donor Page</h1>
-      {data.map(campaign => (
+      {props.campaignList.map(campaign => (
         <div keys={campaign.id}>
           <ul>
             <li>
@@ -124,6 +109,23 @@ function Campaigns(params) {
             </li>
           </ul>
         </div>
+
+           ))}
+    </div>
+  );
+}
+function Donors(props) {
+
+  return (
+    <div>
+      <h1>Donor Page</h1>
+      {props.donorList.map(campaign => (
+        <div keys={campaign.id}>
+          <img src={campaign.avatar} alt={campaign.first_name} />
+          <p>({campaign.first_name} {campaign.last_name})</p>
+
+        </div>
+
       ))}
     </div>
   );
@@ -153,8 +155,19 @@ function DashBoard(params) {
       </div>
 
       <Route exact path="/" component={Home} />
-      <Route path="/campaign" component={Campaigns} />
-      <Route path="/donor" component={Donors} />
+      <Route path="/campaign"
+      render={props => (
+        <Campaigns {...props} campaignList={data} />
+      ) }
+      // component={Campaigns}
+      />
+      <Route
+        path="/donor"
+        render={props => (
+          <Donors {...props} donorList={data} />
+        )}
+      // component={Donors}
+      />
       <Route path="/logot" component={Logout} />
 
     </BrowserRouter>
