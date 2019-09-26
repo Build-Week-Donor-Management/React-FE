@@ -27,7 +27,7 @@ function DonorCard(props) {
   return (
     <div>
       <h1>Donor Card</h1>
-      <img src={donorcard.avatar} alt={donorcard.first_name} />
+      <img className="character-image" src={donorcard.avatar} alt={donorcard.first_name} />
       <div>
         <h1>{donorcard.first_name} {donorcard.last_name}</h1>
         <h4>({donorcard.email})</h4>

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, NavLink } from "react-router-dom";
 
 import Home from "./Home";
 import Donors from "./Donors";
@@ -107,19 +107,21 @@ function DashBoard(params) {
   return (
 
     <BrowserRouter>
-      <div>
-        <ul>
+      <div className="App">
+        {/* <div > */}
+
+        <ul className="navbar">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink activeClassName="activeNavButton" exact to="/" >Home</NavLink>
           </li>
           <li>
-            <Link to="/campaign">Campaigns</Link>
+            <NavLink activeClassName="activeNavButton" to="/campaign">Campaigns</NavLink>
           </li>
           <li>
-            <Link to="/donor">Donors</Link>
+            <NavLink activeClassName="activeNavButton" to="/donor">Donors</NavLink>
           </li>
           <li>
-            <Link to="/logout">Logout</Link>
+            <NavLink activeClassName="activeNavButton" to="/logout">Logout</NavLink>
           </li>
           {/* <li>
             <Link to="/campaignForm">Create Campaign</Link>

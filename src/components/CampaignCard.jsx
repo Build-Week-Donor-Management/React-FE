@@ -27,7 +27,7 @@ function CampaignCard(props) {
   return (
     <div>
       <h1>Campaign Card</h1>
-      <img src={campaigncard.avatar} alt={campaigncard.first_name} />
+      <img className="character-image" src={campaigncard.avatar} alt={campaigncard.first_name} />
       <div>
         <h1>{campaigncard.first_name} {campaigncard.last_name}</h1>
         <h4>({campaigncard.email})</h4>
