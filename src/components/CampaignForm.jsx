@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Form as FormikForm, Field as FormikField } from "formik";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import { Display2 } from "./Display";
+
+// import {FormikLoginForm2} from "./Form";
+
+
 function CampaignForm({ errors, touched, values, status }) {
   const [users, setUsers] = useState([]);
   const [usersState, setUsersState] = useState({ checked: false });
@@ -66,5 +70,6 @@ function CampaignForm({ errors, touched, values, status }) {
       </Form>
     </FormikForm>
   );
+  // return <h1>Hello World</h1>
 }
 export default CampaignForm;
