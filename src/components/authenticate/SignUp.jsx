@@ -93,7 +93,7 @@ const FormikForm = withFormik({
     console.log(values);
     axios
       .post(
-        "https://donation-management.herokuapp.com/donate/register/user",
+        `https://donation-management.herokuapp.com/donate/register/${values.type}`,
         values
       )
       .then(res => {
