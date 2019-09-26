@@ -95,15 +95,39 @@ const data = [
 function Home(params) {
   return <h1>Home Page</h1>;
 }
-function Campaigns(params) {
+function Donors(params) {
   return (
     <div>
-      {}
+      <h1>Campaigns Page</h1>
+      {data.map(campaign => (
+        <div keys={campaign.id}>
+          <img src={campaign.avatar} alt={campaign.first_name} />
+          <p>({campaign.first_name} {campaign.last_name})</p>
+
+        </div>
+      ))}
     </div>
   );
 }
-function Donors(params) {
-  return <h1>Donor Page</h1>;
+function Campaigns(params) {
+
+  return (
+    <div>
+      <h1>Donor Page</h1>
+      {data.map(campaign => (
+        <div keys={campaign.id}>
+          <ul>
+            <li>
+              <h3>Our campaign name is {campaign.last_name}  </h3>
+              <p>Managed by {campaign.first_name}  </p>
+              <p>({campaign.email})</p>
+            </li>
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+
 }
 function Logout(params) {
   return <h1>Logout Page</h1>;
