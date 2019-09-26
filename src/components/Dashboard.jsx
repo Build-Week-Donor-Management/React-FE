@@ -9,7 +9,7 @@ function Campaigns(params) {
 function Donor(params) {
   return <h1>Donor Page</h1>;
 }
-function DashBoard2(params) {
+function DashBoard(params) {
   return (
     <BrowserRouter>
       <Link to="/">Home</Link>
@@ -19,4 +19,4 @@ function DashBoard2(params) {
     </BrowserRouter>
   );
 }
-export default DashBoard2;
+export default DashBoard;
