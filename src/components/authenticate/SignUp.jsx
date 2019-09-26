@@ -4,7 +4,7 @@ import axios from "axios";
 import { Segment, Form, Button, Select, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { Form as Formik, Field, withFormik } from "formik";
-
+import Yup from "yup";
 const SignUp = props => {
   return (
     <div className="signUp-wrapper">
@@ -33,15 +33,30 @@ const SignUp = props => {
                 required
               />
             </Form>
+
             <Form>
-              <label>Account Type</label>
+              <label>
+                Account Type
+                <ul>
+                  <li>user</li>
+                  <li>board</li>
+                  <li>campaign</li>
+                </ul>
+              </label>
               <Field
                 type="text"
                 name="type"
-                placeholder="Register your account type? "
-                required
+                placeholder="What type of account?"
               />
             </Form>
+            {/* <Form.Field>
+              <Field type="radio" name="user" />
+              <label>User</label>
+              <Field type="radio" name="board" />
+              <label>board</label>
+              <Field type="radio" name="campaign" />
+              <label>campaign</label>
+            </Form.Field> */}
             <Form>
               <label>Email</label>
               <Field
@@ -78,7 +93,7 @@ const FormikForm = withFormik({
       email: values.email || "",
       phone: values.phone || "",
       address: values.address || "",
-      type: values.type || ""
+      type: values.user || ""
     };
   },
   handleSubmit(values, props) {
