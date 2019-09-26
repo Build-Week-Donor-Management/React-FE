@@ -5,7 +5,8 @@ import { Segment, Form, Button, Select, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { Form as Formik, Field, withFormik } from "formik";
 import Yup from "yup";
-const SignUp = props => {
+
+const SignUp = ({ values, touched }) => {
   return (
     <div className="signUp-wrapper">
       <Segment raised compact>
@@ -35,28 +36,20 @@ const SignUp = props => {
             </Form>
 
             <Form>
-              <label>
-                Account Type
-                <ul>
-                  <li>user</li>
-                  <li>board</li>
-                  <li>campaign</li>
-                </ul>
-              </label>
-              <Field
+              <label>Account Type</label>
+              {/* <Field
                 type="text"
                 name="type"
                 placeholder="What type of account?"
-              />
+              /> */}
             </Form>
-            {/* <Form.Field>
-              <Field type="radio" name="user" />
-              <label>User</label>
-              <Field type="radio" name="board" />
-              <label>board</label>
-              <Field type="radio" name="campaign" />
-              <label>campaign</label>
-            </Form.Field> */}
+            <Form>
+              <Field component="select" name="type">
+                <option value="user">User</option>
+                <option value="board">Boardmember</option>
+                <option value="campaign">Campaign</option>
+              </Field>
+            </Form>
             <Form>
               <label>Email</label>
               <Field
@@ -93,10 +86,11 @@ const FormikForm = withFormik({
       email: values.email || "",
       phone: values.phone || "",
       address: values.address || "",
-      type: values.user || ""
+      type: values.user || values.board || values.campaign || "user"
     };
   },
   handleSubmit(values, props) {
+    console.log(values);
     axios
       .post(
         "https://donation-management.herokuapp.com/donate/register/user",
