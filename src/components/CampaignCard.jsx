@@ -17,7 +17,7 @@ function CampaignCardEmail(props) {
     <p>{props.campaigncard.email}</p>
   )
 }
-
+ 
 
 function CampaignCard(props) {
   const campaigncard = props.campaignList.find(

@@ -33,10 +33,10 @@ function DonorCard(props) {
         <h4>({donorcard.email})</h4>
 
         <nav>
-          <Link to={`/campaign/${donorcard.id}/email`}>Email</Link>
+          <Link to={`/donor/${donorcard.id}/email`}>Email</Link>
         </nav>
         <Route
-          path="/campaign/:id/email"
+          path="/donor/:id/email"
           render={props => (
             <DonorCardEmail {...props} donorcard={donorcard} />
           )}

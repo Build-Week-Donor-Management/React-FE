@@ -7,75 +7,8 @@ import DonorCard from "./DonorCard";
 import Campaigns from "./Campaigns";
 import CampaignForm from "./CampaignForm"
 import CampaignCard from "./CampaignCard";
+import { FormikLoginForm1, FormikLoginForm2 } from "./Form";
 import Logout from "./Logout";
-
-
-
-// import { useState, useEffect } from "react";
-// import { withFormik, Form as FormikForm, Field as FormikField } from "formik";
-// import * as Yup from "yup";
-// import axios from "axios";
-// import { Button, Checkbox, Form, Dropdown} from "semantic-ui-react";
-
-
-// import { Container, Divider, Grid, Header, Image, Menu, Segment } from 'semantic-ui-react'
-
-// const ThemingLayout = () => (
-//   <Container style={{ marginTop: '3em' }}>
-// <Grid columns={3} doubling>
-//       <Grid.Column>
-//         <Menu
-//           items={[
-//             { key: '1', href: "/logout", name: 'link-1', content: 'Link' },
-//             { key: '2', name: 'link-2', content: 'Link' },
-//             { key: '3', name: 'link-3', content: 'Link' },
-//           ]}
-//           pointing
-//           secondary
-//         />
-//       </Grid.Column>
-//       </Grid>
-//   </Container>
-//   )
-
-
-//  const Display1 = props => {
-//   return (
-//     <div>
-//       <h3>Registered Donors</h3>
-//       {props.users.map(user => (
-//         <>
-//           First Name: {user.fName} <br />
-//           Middle Name: {user.mName} <br />
-//           Last Name: {user.lName} <br />
-//           Email: {user.email} <br />
-//           {/* Mailing List: {user.mList} <br /><br /><br /> */}
-//         </>
-//       ))}
-//     </div>
-//   );
-// };
-
-//  const Display2 = props => {
-//   return (
-//     <div>
-//       <h3>Registered Campaign</h3>
-//       {props.users.map(user => (
-//         <>
-//           First Name: {user.cName} <br />
-//           Email: {user.email} <br />
-//           <br />
-//           <br />
-//         </>
-//       ))}
-//     </div>
-//   );
-// };
-
-
-
-
-
 
 
 
@@ -188,6 +121,12 @@ function DashBoard(params) {
           <li>
             <Link to="/logout">Logout</Link>
           </li>
+          {/* <li>
+            <Link to="/campaignForm">Create Campaign</Link>
+          </li>
+          <li>
+            <Link to="/donorForm">Register Donor</Link>
+          </li> */}
         </ul>
       </div>
 
@@ -198,10 +137,11 @@ function DashBoard(params) {
           <Campaigns {...props} campaignList={data} />
         )}
       />
-      {/* <Route
-        path exact to="/campaignForm"
-        component={CampaignForm}
-      /> */}
+
+      <Route exact path="/donorForm" component={FormikLoginForm1} />
+
+      <Route exact path="/campaignForm" component={FormikLoginForm2} />
+
       <Route
         path="/campaign/:id"
         render={props => (
@@ -210,7 +150,7 @@ function DashBoard(params) {
       />
 
       <Route
-        path="/donor"
+        exact path="/donor"
         render={props => (
           <Donors {...props} donorList={data} />
         )}
