@@ -13,9 +13,12 @@ function DashBoard(params) {
   return (
     <BrowserRouter>
       <Link to="/">Home</Link>
-      <Link to="/campaign">Campaign</Link>
+      <Link to="/campaign">Campaigns</Link>
       <Link to="/donor">Donor</Link>
-      {/* <Route></Route> */}
+
+      <Route exact path="/" component={Home} />
+      <Route path="/campaign" component={Campaigns} />
+      <Route path="/donor" component={Donor} />
     </BrowserRouter>
   );
 }
