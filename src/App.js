@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import SignUp from "./components/authenticate/SignUp";
 import LogIn from "./components/authenticate/Login";
 import { UserContext } from "./components/Context/UserContext";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/dashboard";
 import PrivateRoute from "./components/authenticate/PrivateRoute";
 
 function App() {
