@@ -1,30 +1,48 @@
-// app=>login=> dashboard=>create a campaign =>or add a donor => dashboard
-import React, { useState } from "react";
-import { axiosWithAuth } from "../../utilities/axiosWithAuth";
-import { Segment, Form, Button, Input } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Form as Formik, Field, withFormik } from "formik";
+import { Segment, Form, Button } from "semantic-ui-react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const LogIn = props => {
-  const [state, setState] = useState({
-    username: "",
-    password: ""
-  });
+  return (
+    <Segment raised compact>
+      <div className="login-cta">
+        <h1>Please Log In</h1>
+      </div>
+      <Form>
+        <Formik>
+          <Form.Field>
+            <label>Username</label>
+            <Field type="text" name="username" placeholder="username" />
+          </Form.Field>
+          <Form.Field>
+            <label>Password</label>
+            <Field type="password" name="password" placeholder="password" />
+          </Form.Field>
+          <Button type="submit">Login</Button>
+        </Formik>
+        <Link to="/signup">
+          <p>Need to create an Account?</p>
+        </Link>
+      </Form>
+    </Segment>
+  );
+};
 
-  const changeHandler = event => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value
-    });
-  };
-
-  const submitHandler = (event, state, value) => {
-    event.preventDefault();
-    console.log(state);
-    axiosWithAuth()
-      .post("/donate/login", value)
+const FormikForm = withFormik({
+  mapPropsToValues(values) {
+    return {
+      username: values.username || "",
+      password: values.password || ""
+    };
+  },
+  handleSubmit(values, props) {
+    axios
+      .post("https://donation-management.herokuapp.com/donate/login", values)
       .then(res => {
         localStorage.setItem("token", res.data.token);
+        console.log("res", res);
       })
       .then(res =>
         setTimeout(() => {
@@ -32,50 +50,7 @@ const LogIn = props => {
         }, 1000)
       )
       .catch(err => console.log(err));
-    setState({
-      username: "",
-      password: ""
-    });
-  };
+  }
+})(LogIn);
 
-  return (
-    <div className="login-wrapper">
-      <Segment raised compact>
-        <div className="login-cta">
-          <h1>Please Log In</h1>
-        </div>
-        <Form onSubmit={event => submitHandler(event, state)}>
-          <Form.Field>
-            <label>Username</label>
-            <input
-              type="text"
-              name="username"
-              value={state.username}
-              onChange={changeHandler}
-              placeholder="Username"
-              fluid
-              required
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Register your password"
-              value={state.password}
-              onChange={changeHandler}
-              required
-            />
-          </Form.Field>
-          <Button>Log In</Button>
-          <Link to="/signup">
-            <p>Need to create an Account?</p>
-          </Link>
-        </Form>
-      </Segment>
-    </div>
-  );
-};
-
-export default LogIn;
+export default FormikForm;
