@@ -97,6 +97,8 @@ function Home(params) {
 }
 
 
+
+//campaign component and sub components
 function Campaigns(props) {
   return (
     <div>
@@ -105,7 +107,6 @@ function Campaigns(props) {
         <div keys={campaign.id}>
           <ul>
             <li>
-              {/* <h3>Our campaign name is {campaign.last_name}  </h3> */}
               <h3 onClick={() => props.history.push(`/campaign/${campaign.id}/email`)}>Our campaign name is {campaign.last_name} </h3>
               <p>Managed by {campaign.first_name}  </p>
               <p>({campaign.email})</p>
@@ -117,8 +118,8 @@ function Campaigns(props) {
   );
 }
 function CampaignCardEmail(props) {
-  return(
-    <p>props.campaigncard.email</p>
+  return (
+    <p>{props.campaigncard.email}</p>
   )
 }
 function CampaignCard(props) {
@@ -131,46 +132,87 @@ function CampaignCard(props) {
       <h1>Campaign Card</h1>
       <img src={campaigncard.avatar} alt={campaigncard.first_name} />
       <div>
-          <h1>{campaigncard.first_name} {campaigncard.last_name}</h1>
-          <h4>({campaigncard.email})</h4>
+        <h1>{campaigncard.first_name} {campaigncard.last_name}</h1>
+        <h4>({campaigncard.email})</h4>
 
-          <nav>
-            <Link to={`/campaign/${campaigncard.id}/email`}>Email</Link>
-          </nav>
-          <Route
-            path="/campaign/:id/email"
-            render={props => (
-              <CampaignCardEmail {...props} campaigncard={campaigncard} />
-            )}
-          />
-          
-        </div>
+        <nav>
+          <Link to={`/campaign/${campaigncard.id}/email`}>Email</Link>
+        </nav>
+        <Route
+          path="/campaign/:id/email"
+          render={props => (
+            <CampaignCardEmail {...props} campaigncard={campaigncard} />
+          )}
+        />
+
+      </div>
     </div>
   );
 }
 
 
 
-function Donors(props) {
 
+//donor component and sub components
+function Donors(props) {
   return (
     <div>
       <h1>Donor Page</h1>
-      {props.donorList.map(campaign => (
-        <div keys={campaign.id}>
-          <img src={campaign.avatar} alt={campaign.first_name} />
-          <p>({campaign.first_name} {campaign.last_name})</p>
+      {props.donorList.map(donor => (
+        <div keys={donor.id}>
+          <img src={donor.avatar} alt={donor.first_name} />
+          <h3 onClick={() => props.history.push(`/donor/${donor.id}/email`)}>({donor.first_name} {donor.last_name})</h3>
+
+          {/* <p>({donor.first_name} {donor.last_name})</p> */}
 
         </div>
-
       ))}
     </div>
   );
-
 }
+function DonorCardEmail(props) {
+  return (
+    <p>{props.donorcard.email}</p>
+  )
+}
+function DonorCard(props) {
+  const donorcard = props.donorList.find(
+    dCard => dCard.id === parseInt(props.match.params.id, 10)
+  );
+
+  return (
+    <div>
+      <h1>Donor Card</h1>
+      <img src={donorcard.avatar} alt={donorcard.first_name} />
+      <div>
+        <h1>{donorcard.first_name} {donorcard.last_name}</h1>
+        <h4>({donorcard.email})</h4>
+
+        <nav>
+          <Link to={`/campaign/${donorcard.id}/email`}>Email</Link>
+        </nav>
+        <Route
+          path="/campaign/:id/email"
+          render={props => (
+            <DonorCardEmail {...props} donorcard={donorcard} />
+          )}
+        />
+      </div>
+    </div>
+  );
+}
+
+
+
+//logot component
 function Logout(params) {
   return <h1>Logout Page</h1>;
 }
+
+
+
+
+//dashboard component
 function DashBoard(params) {
   return (
     <BrowserRouter>
@@ -192,6 +234,8 @@ function DashBoard(params) {
       </div>
 
       <Route exact path="/" component={Home} />
+
+      
       <Route path="/campaign"
         render={props => (
           <Campaigns {...props} campaignList={data} />
@@ -205,6 +249,7 @@ function DashBoard(params) {
         )}
       />
 
+
       <Route
         path="/donor"
         render={props => (
@@ -212,6 +257,15 @@ function DashBoard(params) {
         )}
       // component={Donors}
       />
+      <Route
+        path="/donor/:id"
+        render={props => (
+          <DonorCard {...props} donorList={data} />
+        )}
+      />
+
+
+
       <Route path="/logot" component={Logout} />
 
     </BrowserRouter>
