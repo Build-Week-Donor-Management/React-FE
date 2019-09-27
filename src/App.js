@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <UserContext.Provider>
         <Switch>
-          <Route exact path="/signup" render={props => <SignUp {...props} />} />
+          <Route exact path="/SignUP" render={props => <SignUp {...props} />} />
           <Route path="/login" render={props => <LogIn {...props} />} />
           <PrivateRoute path="/" component={Dashboard} />
         </Switch>
@@ -21,6 +21,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
