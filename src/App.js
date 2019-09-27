@@ -12,6 +12,8 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider>
+
+        {//co}
         <Switch>
           <Route exact path="/SignUP" render={props => <SignUp {...props} />} />
           <Route path="/login" render={props => <LogIn {...props} />} />
