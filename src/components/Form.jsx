@@ -6,12 +6,11 @@ import DonorForm from "./DonorForm";
 import CampaignForm from "./CampaignForm";
 import { axiosWithAuth } from "../utilities/axiosWithAuth";
 
-
 export const FormikLoginForm1 = withFormik({
   mapPropsToValues({ name, email }) {
     return {
       name: name || "",
-      email: email || "",
+      email: email || ""
     };
   },
 
@@ -27,21 +26,22 @@ export const FormikLoginForm1 = withFormik({
   handleSubmit(values, { resetForm, setStatus }) {
     const sentData = {
       name: values.name,
-      email: values.email,
+      email: values.email
     };
 
-    const authorization = localStorage.getItem('token')
-    axios.post('https://donation-management.herokuapp.com/donate/donor/' + sentData,
-      { headers: { Authorization: authorization } }
-    )
-      .then(data => {
-        setStatus(data.data)
-        resetForm();
-      }
+    const authorization = localStorage.getItem("token");
+    axios
+      .post(
+        "https://donation-management.herokuapp.com/donate/donor/",
+        sentData,
+        { headers: { Authorization: authorization } }
       )
+      .then(data => {
+        setStatus(data.data);
+        resetForm();
+      });
   }
 })(DonorForm);
-
 
 export const FormikLoginForm2 = withFormik({
   mapPropsToValues({ name, email }) {
