@@ -48,7 +48,6 @@ function DonorForm({ errors, touched, values, status }) {
   const [usersState, setUsersState] = useState({ checked: false });
   const toggle = () =>
     setUsersState(prevState => ({ checked: !prevState.checked }));
-  // getValue = (e, { value }) => setState({ value })
 
   useEffect(() => {
     if (status) {
@@ -58,8 +57,8 @@ function DonorForm({ errors, touched, values, status }) {
 
   return (
     <FormikForm>
-      <Form style={{ width: 800, margin: "auto" }}>
-        <h1>Donor Form</h1> 
+      <Form style={{ width: 800, marginTop: 40, marginRight: "auto", marginBottom: 20, marginLeft: "auto" }}>
+        <h1>Donor Form</h1>
         <br />
         <Form.Group widths="equal">
           <Form.Field>
@@ -70,32 +69,26 @@ function DonorForm({ errors, touched, values, status }) {
             </label>
           </Form.Field>
           <br />
-
           <Form.Field>
             <label>
               Middle Name:
               <FormikField type="text" name="mName" placeholder="Middle Name" />
-              {/* {touched.mName && errors.mName && <p>{errors.mName}</p>} */}
             </label>
           </Form.Field>
           <br />
-
           <Form.Field>
             <label>
               Last Name:
               <FormikField type="text" name="lName" placeholder="Last Name" />
-              {/* {touched.lName && errors.lName && <p>{errors.lName}</p>} */}
             </label>
           </Form.Field>
         </Form.Group>
         <br />
-
         <Form.Field label="Gender" control="select">
           <option value="female">Female</option>
           <option value="male">Male</option>
         </Form.Field>
         <br />
-
         <Form.Field>
           <label>
             Email:
@@ -108,20 +101,17 @@ function DonorForm({ errors, touched, values, status }) {
           </label>
         </Form.Field>
         <br />
-
         <Form.Input
           label="Phone"
           type="phone"
           placeholder="+233 888 8888 888"
         />
         <br />
-
         <Form.TextArea
           label="Home Address"
           placeholder="Your Billing/Contact Home Address"
         />
         <br />
-
         <Form.Field>
           <label>
             Campaign List:
@@ -134,7 +124,6 @@ function DonorForm({ errors, touched, values, status }) {
           </label>
         </Form.Field>
         <br />
-
         <Form.Group widths="equal">
           <Form.Input
             label="Donation"
@@ -161,23 +150,18 @@ function DonorForm({ errors, touched, values, status }) {
           </Form.Field>
         </Form.Group>
         <br />
-
         <Form.Field>
           <label>
             Mailing list :
             <br />
             <Form.Checkbox
               name="mList"
-              // onChange={getValue}
               label="Add me to your mailing list"
             />
-            {/* {touched.mList && errors.mList && <p>{errors.mList}</p>} */}
           </label>
         </Form.Field>
-        {/* <FormikField type="checkbox"  placeholder="Add me to your mailing list" /> */}
         <br />
         <br />
-
         <Form.Field>
           <Button size="huge" animated="fade">
             <Button.Content visible style={{ width: 100 }}>
@@ -193,5 +177,6 @@ function DonorForm({ errors, touched, values, status }) {
     </FormikForm>
   );
 }
+
 
 export default DonorForm;

@@ -1,23 +1,12 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 
-// const DonorCard = () => {
-//   return (
-//     <div>
-//       <h3></h3>
-//       <p></p>
-//       <p></p>
-//       <p></p>
-//     </div>
-//   );
-// };
 function DonorCardEmail(props) {
   return (
     <p>{props.donorcard.email}</p>
   )
 }
-
 
 function DonorCard(props) {
   const donorcard = props.donorList.find(
