@@ -5,7 +5,6 @@ import Home from "./Home";
 import Donors from "./Donors";
 import DonorCard from "./DonorCard";
 import Campaigns from "./Campaigns";
-import CampaignForm from "./CampaignForm"
 import CampaignCard from "./CampaignCard";
 import { FormikLoginForm1, FormikLoginForm2 } from "./Form";
 import Logout from "./Logout";
@@ -100,16 +99,11 @@ const data = [
 ]
 
 
-
-// //dashboard component
 function DashBoard(params) {
 
   return (
-
     <BrowserRouter>
       <div className="App">
-        {/* <div > */}
-
         <ul className="navbar">
           <li>
             <NavLink activeClassName="activeNavButton" exact to="/" >Home</NavLink>
@@ -127,14 +121,7 @@ function DashBoard(params) {
                 window.location = "/login";
               }}
             >LOGOUT</NavLink>
-            {/* <NavLink activeClassName="activeNavButton" to="/logout">Logout</NavLink> */}
           </li>
-          {/* <li>
-            <Link to="/campaignForm">Create Campaign</Link>
-          </li>
-          <li>
-            <Link to="/donorForm">Register Donor</Link>
-          </li> */}
         </ul>
       </div>
 
@@ -174,7 +161,8 @@ function DashBoard(params) {
       <Route path="/logout" component={Logout} />
 
     </BrowserRouter>
-
   );
 }
+
+
 export default DashBoard;

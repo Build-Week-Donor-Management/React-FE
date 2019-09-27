@@ -1,7 +1,7 @@
 import React from "react";
-import "./App.css";
 import { Route, Switch } from "react-router-dom";
-//components
+
+import "./App.css";
 import SignUp from "./components/authenticate/SignUp";
 import LogIn from "./components/authenticate/Login";
 import { UserContext } from "./components/Context/UserContext";
@@ -21,5 +21,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

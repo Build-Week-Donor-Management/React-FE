@@ -3,10 +3,10 @@ import React from "react";
 export const Display1 = props => {
   return (
     <div>
-      <h3>Registered Donors</h3>
+      {/* <h3>Registered Donors</h3> */}
       {props.users.map(user => (
         <>
-          First Name: {user.fName} <br />
+          First Name: {user.name} <br />
           Middle Name: {user.mName} <br />
           Last Name: {user.lName} <br />
           Email: {user.email} <br />
@@ -20,10 +20,10 @@ export const Display1 = props => {
 export const Display2 = props => {
   return (
     <div>
-      <h3>Registered Campaign</h3>
+      {/* <h3>Registered Campaign</h3> */}
       {props.users.map(user => (
         <>
-          First Name: {user.cName} <br />
+          First Name: {user.name} <br />
           Email: {user.email} <br />
           <br />
           <br />

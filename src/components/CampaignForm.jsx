@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Form as FormikForm, Field as FormikField } from "formik";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import { Display2 } from "./Display";
-
-// import {FormikLoginForm2} from "./Form";
 
 
 function CampaignForm({ errors, touched, values, status }) {
+
   const [users, setUsers] = useState([]);
   const [usersState, setUsersState] = useState({ checked: false });
   const toggle = () =>
     setUsersState(prevState => ({ checked: !prevState.checked }));
+
   useEffect(() => {
     if (status) {
       setUsers(users.concat(status));
     }
   }, [status]);
+
   return (
     <FormikForm>
-      <Form style={{ width: 800, margin: "auto" }}>
+      <Form style={{ width: 800, marginTop: 40, marginRight: "auto", marginBottom: 20, marginLeft: "auto" }}>
         <h1>Campaign Form</h1>
         <br />
         <Form.Field>
@@ -47,10 +48,8 @@ function CampaignForm({ errors, touched, values, status }) {
           placeholder="+233 888 8888 888"
         />
         <br />
-
         <Form.TextArea label="Address" placeholder="Campaign Office Address" />
         <br />
-
         <Form.TextArea
           label="Campaign Goals"
           placeholder="Tell us about your campaign goals and what you aim to achieve with donated funds"
@@ -70,6 +69,7 @@ function CampaignForm({ errors, touched, values, status }) {
       </Form>
     </FormikForm>
   );
-  // return <h1>Hello World</h1>
 }
+
+
 export default CampaignForm;
