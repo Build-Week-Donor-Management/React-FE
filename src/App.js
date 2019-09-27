@@ -11,11 +11,15 @@ import PrivateRoute from "./components/authenticate/PrivateRoute";
 function App() {
   return (
     <div className="App">
+              <Switch>
+          <Route exact path="/signup" render={props => <SignUp {...props} />} />
+          <Route path="/login" render={props => <LogIn {...props} />} />
+          <PrivateRoute path="/" component={Dashboard} />
+        </Switch>
+      </UserContext.Provider>
       <UserContext.Provider>
-
-        {//co}
         <Switch>
-          <Route exact path="/SignUP" render={props => <SignUp {...props} />} />
+          <Route exact path="/signup" render={props => <SignUp {...props} />} />
           <Route path="/login" render={props => <LogIn {...props} />} />
           <PrivateRoute path="/" component={Dashboard} />
         </Switch>
@@ -23,5 +27,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
