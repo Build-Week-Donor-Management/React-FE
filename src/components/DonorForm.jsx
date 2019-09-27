@@ -59,14 +59,14 @@ function DonorForm({ errors, touched, values, status }) {
   return (
     <FormikForm>
       <Form style={{ width: 800, margin: "auto" }}>
-        <h1>Donor Form</h1>
+        <h1>Donor Form</h1> 
         <br />
         <Form.Group widths="equal">
           <Form.Field>
             <label>
               First Name:
               <FormikField type="text" name="name" placeholder="First Name" />
-              {touched.fName && errors.name && <p>{errors.fName}</p>}
+              {touched.name && errors.name && <p>{errors.name}</p>}
             </label>
           </Form.Field>
           <br />
