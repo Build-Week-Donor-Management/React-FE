@@ -57,7 +57,7 @@ function DonorForm({ errors, touched, values, status }) {
 
   return (
     <FormikForm>
-      <Form style={{ width: 800, marginTop: 40, marginRight:"auto", marginBottom: 20, marginLeft:"auto", }}>
+      <Form style={{ width: 800, marginTop: 40, marginRight: "auto", marginBottom: 20, marginLeft: "auto" }}>
         <h1>Donor Form</h1>
         <br />
         <Form.Group widths="equal">
