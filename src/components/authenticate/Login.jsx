@@ -20,6 +20,13 @@ const LogIn = props => {
             <label>Password</label>
             <Field type="password" name="password" placeholder="password" />
           </Form.Field>
+          <Form>
+            <Field component="select" name="type">
+              <option value="user">User</option>
+              <option value="board">Boardmember</option>
+              <option value="campaign">Campaign</option>
+            </Field>
+          </Form>
           <Button type="submit">Login</Button>
         </Formik>
         <Link to="/signup">
@@ -34,7 +41,8 @@ const FormikForm = withFormik({
   mapPropsToValues(values) {
     return {
       username: values.username || "",
-      password: values.password || ""
+      password: values.password || "",
+      type: values.user || values.board || values.campaign || "user"
     };
   },
   handleSubmit(values, props) {
@@ -42,7 +50,7 @@ const FormikForm = withFormik({
       .post("https://donation-management.herokuapp.com/donate/login", values)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        console.log("res", res);
+        console.log("res login", res);
       })
       .then(res =>
         setTimeout(() => {
