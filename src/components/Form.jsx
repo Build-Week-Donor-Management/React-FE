@@ -4,20 +4,21 @@ import axios from "axios";
 
 import DonorForm from "./DonorForm";
 import CampaignForm from "./CampaignForm";
+import { axiosWithAuth } from "../utilities/axiosWithAuth";
 
 export const FormikLoginForm1 = withFormik({
-  mapPropsToValues({ fName, mName, lName, mList, email }) {
+  mapPropsToValues({ name, mName, lName, mList, email }) {
     return {
-      fName: fName || "",
-      mName: mName || "",
-      lName: lName || "",
+      name: name || "",
+      // mName: mName || "",
+      // lName: lName || "",
       email: email || "",
-      mList: mList || ""
+      // mList: mList || ""
     };
   },
 
   validationSchema: Yup.object().shape({
-    fName: Yup.string()
+    name: Yup.string()
       .min(3)
       .required(),
     email: Yup.string()
@@ -27,71 +28,56 @@ export const FormikLoginForm1 = withFormik({
 
   handleSubmit(values, { resetForm, setStatus }) {
     const sentData = {
-      fName: values.fName,
-      mName: values.mName,
-      lName: values.lName,
-      email: values.email,
-      mList: values.mList
+      name: values.name,
+      // email: values.email,
     };
+    
+    // const sentData = {
+    //   name: values.name,
+    //   mName: values.mName,
+    //   lName: values.lName,
+    //   email: values.email,
+    //   mList: values.mList
+    // };
 
-    axios
-      .post("https://reqres.in/api/users", sentData)
-      .then(response => {
-        setStatus(response.data);
+    // axiosWithAuth()
+    //   .post("/donor", sentData)
+    //   .then(response => {
+    //     console.log("pppp: ", response)
+    //     setStatus(response.data);
+    //     resetForm();
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+  
+    const authorization = localStorage.getItem('token') 
+    axios.put('https://donation-management.herokuapp.com/donate/donor/:id' + sentData,
+    { headers: { Authorization: authorization } }
+  )
+    .then (data =>   
+      {
+        console.log("pppp: ", data)
+        setStatus(data.data)
         resetForm();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+     }
+  )
+
+
   }
 })(DonorForm);
 
-// export const FormikLoginForm2 = withFormik({
-//   mapPropsToValues({ cName, email }) {
-//     return {
-//       cName: cName || "",
-//       email: email || ""
-//     };
-//   },
-
-//   validationSchema: Yup.object().shape({
-//     cName: Yup.string()
-//       .min(3)
-//       .required(),
-//     email: Yup.string()
-//       .email()
-//       .required()
-//   }),
-
-//   handleSubmit(values, { resetForm, setStatus }) {
-//     const sentData = {
-//       cName: values.cName,
-//       email: values.email
-//     };
-
-//     axios
-//       .post("https://reqres.in/api/users", sentData)
-//       .then(response => {
-//         setStatus(response.data);
-//         resetForm();
-//       })
-//       .catch(error => {
-//         console.log(error);
-//       });
-//   }
-// })(CampaignForm);
-
 
 export const FormikLoginForm2 = withFormik({
-  mapPropsToValues({ cName, email }) {
+  mapPropsToValues({ name, email }) {
     return {
-      cName: cName || "",
+      name: name || "",
       email: email || ""
     };
   },
 
   validationSchema: Yup.object().shape({
-    cName: Yup.string()
+    name: Yup.string()
       .min(3)
       .required(),
     email: Yup.string()
@@ -101,12 +87,12 @@ export const FormikLoginForm2 = withFormik({
 
   handleSubmit(values, { resetForm, setStatus }) {
     const sentData = {
-      cName: values.cName,
+      name: values.name,
       email: values.email
     };
 
-    axios
-      .post("https://reqres.in/api/users", sentData)
+    axiosWithAuth()
+      .post("/campaign", sentData)
       .then(response => {
         setStatus(response.data);
         resetForm();
