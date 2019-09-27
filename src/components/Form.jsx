@@ -46,7 +46,7 @@ export const FormikLoginForm1 = withFormik({
 export const FormikLoginForm2 = withFormik({
   mapPropsToValues({ name, email }) {
     return {
-      name: name || "",
+      name: name 222|| "",
       email: email || ""
     };
   },
