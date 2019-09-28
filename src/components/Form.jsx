@@ -31,7 +31,7 @@ export const FormikLoginForm1 = withFormik({
     };
 
     const authorization = localStorage.getItem('token')
-    axios.post('https://donation-management.herokuapp.com/donate/donor/' + sentData,
+    axios.post('https://donation-management.herokuapp.com/donate/donor/', sentData,
       { headers: { Authorization: authorization } }
     )
       .then(data => {
@@ -44,10 +44,11 @@ export const FormikLoginForm1 = withFormik({
 
 
 export const FormikLoginForm2 = withFormik({
-  mapPropsToValues({ name, email }) {
+  mapPropsToValues({ name, email, goal }) {
     return {
       name: name || "",
-      email: email || ""
+      email: email || "",
+      goal: goal || ""
     };
   },
 
@@ -57,21 +58,35 @@ export const FormikLoginForm2 = withFormik({
       .required(),
     email: Yup.string()
       .email()
-      .required()
+      .required(),
+    goal: Yup.string()
+      .required(),
   }),
 
   handleSubmit(values, { resetForm, setStatus }) {
     const sentData = {
       name: values.name,
-      email: values.email
-    };
+      // email: values.email,
+      goal: values.goal
 
-    axiosWithAuth()
-      .post("/campaign", sentData)
-      .then(response => {
-        setStatus(response.data);
+    };
+    console.log(values)
+
+    const authorization = localStorage.getItem('token')
+    axios.post('https://donation-management.herokuapp.com/donate/campaign/', sentData,
+      { headers: { Authorization: authorization } }
+    )
+      .then(data => {
+        setStatus(data.data)
         resetForm();
-      })
+      }
+      )
+      // axiosWithAuth()
+      //   .post("/campaign", sentData)
+      //   .then(response => {
+      //     setStatus(response.data);
+      //     resetForm();
+      //   })
       .catch(error => {
         console.log(error);
       });
