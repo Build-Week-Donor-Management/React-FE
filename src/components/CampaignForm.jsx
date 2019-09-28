@@ -25,8 +25,8 @@ function CampaignForm({ errors, touched, values, status }) {
         <Form.Field>
           <label>
             Campaign Name
-            <FormikField type="text" name="cName" placeholder="Campaign Name" />
-            {touched.cName && errors.cName && <p>{errors.cName}</p>}
+            <FormikField type="text" name="name" placeholder="Campaign Name" />
+            {touched.name && errors.name && <p>{errors.name}</p>}
           </label>
         </Form.Field>
         <br />
@@ -50,8 +50,15 @@ function CampaignForm({ errors, touched, values, status }) {
         <br />
         <Form.TextArea label="Address" placeholder="Campaign Office Address" />
         <br />
+        <Form.Input
+          label="Campaign Goal"
+          type="number"
+          name="goal"
+          placeholder="Amount in Dollars"
+        />
+        <br />
         <Form.TextArea
-          label="Campaign Goals"
+          label="Campaign Description"
           placeholder="Tell us about your campaign goals and what you aim to achieve with donated funds"
         />
         <br />
