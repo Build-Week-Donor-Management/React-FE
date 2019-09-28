@@ -50,12 +50,18 @@ function CampaignForm({ errors, touched, values, status }) {
         <br />
         <Form.TextArea label="Address" placeholder="Campaign Office Address" />
         <br />
-        <Form.Input
-          label="Campaign Goal"
+        <Form.Field>
+            <label>
+            Campaign Goal
+        <FormikField
+                  // label="Campaign Goal"
           type="number"
           name="goal"
           placeholder="Amount in Dollars"
         />
+        {touched.goal && errors.goal && <p>{errors.goal}</p>}
+        </label>
+          </Form.Field>
         <br />
         <Form.TextArea
           label="Campaign Description"
